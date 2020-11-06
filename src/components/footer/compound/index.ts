@@ -1,0 +1,6 @@
+export { default as FooterText } from './Text'
+export { default as FooterTitle } from './Title'
+export { default as FooterColumn } from './Column'
+export { default as FooterBreak } from './Break'
+export { default as FooterRow } from './Row'
+export { default as FooterLink } from './Link'

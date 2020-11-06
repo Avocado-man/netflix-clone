@@ -1,0 +1,17 @@
+import React from 'react'
+// Containers
+import { JumbotronContainer } from './containers/jumbotron'
+import FooterContainer from './containers/footer'
+import FaqsContainer from './containers/faqs'
+
+const App: React.FC = (): JSX.Element => {
+  return (
+    <>
+      <JumbotronContainer />
+      <FaqsContainer />
+      <FooterContainer />
+    </>
+  )
+}
+
+export default App
