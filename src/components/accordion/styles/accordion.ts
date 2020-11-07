@@ -9,6 +9,7 @@ export const Inner = styled.div`
   display: flex;
   padding: 70px 45px;
   flex-direction: column;
+  align-items: center;
   max-width: 815px;
   margin: auto;
 `
