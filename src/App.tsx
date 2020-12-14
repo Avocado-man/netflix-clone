@@ -11,13 +11,13 @@ const App: React.FC = (): JSX.Element => {
       <Route exact path={ROUTES.HOME}>
         <Home />
       </Route>
-      <Route path={ROUTES.BROWSE}>
+      <Route exact path={ROUTES.BROWSE}>
         <Browse />
       </Route>
-      <Route path={ROUTES.SIGN_IN}>
+      <Route exact path={ROUTES.SIGN_IN}>
         <Signin />
       </Route>
-      <Route path={ROUTES.SIGN_UP}>
+      <Route exact path={ROUTES.SIGN_UP}>
         <Signup />
       </Route>
     </Router>
