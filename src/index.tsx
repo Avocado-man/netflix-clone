@@ -5,13 +5,19 @@ import 'normalize.css'
 import App from './App'
 // Styles
 import { GlobalStyles } from './global-styles'
+// Firebase
+import { firebase } from './lib/firebase.prod'
+// Context
+import { FirebaseContext } from './context/firebase'
 
 render(
   <>
-    <GlobalStyles />
-    <App />
+    <FirebaseContext.Provider value={{ firebase }}>
+      <GlobalStyles />
+      <App />
+    </FirebaseContext.Provider>
   </>,
   document.getElementById('root')
 )
 
-// 3:10:00
+// 3:43:00

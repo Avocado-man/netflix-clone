@@ -1,0 +1,8 @@
+export { default as FormBase } from './Base'
+export { default as FormError } from './Error'
+export { default as FormInput } from './Input'
+export { default as FormLink } from './Link'
+export { default as FormSubmit } from './Submit'
+export { default as FormText } from './Text'
+export { default as FormTextSmall } from './TextSmall'
+export { default as FormTitle } from './Title'
