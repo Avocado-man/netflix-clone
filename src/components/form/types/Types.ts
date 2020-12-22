@@ -9,6 +9,11 @@ export type BaseProps = {
   method: string
 }
 
+export type SubmitProps = {
+  disabled: boolean
+  type: 'button' | 'submit' | 'reset' | undefined
+}
+
 export type InputProps = {
   placeholder: string
   value: string
@@ -22,7 +27,7 @@ export interface IFormComposition {
   Error: React.FC
   Input: React.FC<InputProps>
   Link: React.FC<LinkProps>
-  Submit: React.FC
+  Submit: React.FC<SubmitProps>
   Text: React.FC
   TextSmall: React.FC
   Title: React.FC
