@@ -1,21 +1,37 @@
 import React, { useContext, useState } from 'react'
+// Router
+import { useHistory } from 'react-router-dom'
 // Context
 import { FirebaseContext } from '../context/firebase'
 // Components
 import HeaderContainer from '../containers/header'
 import FooterContainer from '../containers/footer'
 import { Form } from '../components'
+// constants
+import * as ROUTES from '../constants/routes'
 
 const SignIn: React.FC = (): JSX.Element => {
+  const history = useHistory()
   const { firebase } = useContext(FirebaseContext)
-  const [emailAddress, setEmailAddress] = useState()
-  const [password, setPassword] = useState()
+  const [emailAddress, setEmailAddress] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [error, setError] = useState('')
 
-  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
 
-    // firebase work here!
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        // push to browse page
+        history.push(ROUTES.BROWSE)
+      })
+      .catch((e: any) => {
+        setEmailAddress('')
+        setPassword('')
+        setError(e.message)
+      })
   }
 
   const isInvalid = password === '' || emailAddress === ''
