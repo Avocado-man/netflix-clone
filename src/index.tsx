@@ -10,6 +10,7 @@ import { firebase } from './lib/firebase.prod'
 // Context
 import { FirebaseContext } from './context/firebase'
 
+const root = document.getElementById('root')
 render(
   <>
     <FirebaseContext.Provider value={{ firebase }}>
@@ -17,7 +18,7 @@ render(
       <App />
     </FirebaseContext.Provider>
   </>,
-  document.getElementById('root')
+  root
 )
 
-// ~4:40:00
+// ~5:25:00

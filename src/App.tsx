@@ -9,7 +9,7 @@ import { useAuthListener } from './hooks'
 
 const App: React.FC = (): JSX.Element => {
   const { user } = useAuthListener()
-  console.log(user)
+
   return (
     <Router>
       <IsUserRedirect

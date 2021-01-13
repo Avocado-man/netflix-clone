@@ -1,0 +1,5 @@
+export { default as ProfilesList } from './List'
+export { default as ProfilesName } from './Name'
+export { default as ProfilesPicture } from './Picture'
+export { default as ProfilesTitle } from './Title'
+export { default as ProfilesUser } from './User'

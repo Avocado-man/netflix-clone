@@ -17,8 +17,8 @@ const UseAuthListener = (): any => {
         setUser(null)
       }
     })
-    return () => listener()
-  }, [])
+    return (): void => listener()
+  }, [firebase])
 
   return { user }
 }

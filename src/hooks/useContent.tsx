@@ -21,7 +21,7 @@ const UseContent = (target: string): any => {
       .catch((error: any) => {
         console.log(error.message)
       })
-  }, [firebase])
+  }, [firebase, target])
 
   return { [target]: content }
 }
