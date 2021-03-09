@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 // Styled
 import { Background } from './styles/header'
 // Compound
@@ -15,10 +15,13 @@ interface IHeaderComposition {
 const Header: React.FC<HeaderProps> & IHeaderComposition = ({
   bg = true,
   children,
+  src,
   ...restProps
 }): JSX.Element => {
   return bg ? (
-    <Background {...restProps}>{children}</Background>
+    <Background src={src} {...restProps}>
+      {children}
+    </Background>
   ) : (
     (children as JSX.Element)
   )

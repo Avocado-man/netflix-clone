@@ -5,10 +5,9 @@ import { BrowseContainerProps } from './Types'
 import SelectProfileContainer from './profiles'
 // Context
 import { FirebaseContext } from '../context/firebase'
+import { Header, Loading } from '../components'
 
-const BrowseContainer: React.FC<BrowseContainerProps> = ({
-  slides,
-}): JSX.Element => {
+const BrowseContainer: React.FC<BrowseContainerProps> = ({ slides }) => {
   const [profile, setProfile] = useState({
     displayName: '',
     photoURL: '',
@@ -19,11 +18,20 @@ const BrowseContainer: React.FC<BrowseContainerProps> = ({
     setTimeout(() => {
       setLoading(false)
     }, 3000)
-  }, [profile.displayName])
+  }, [profile, profile.displayName])
 
   const { firebase } = useContext(FirebaseContext)
   const user = firebase.auth().currentUser || {}
-  return <SelectProfileContainer user={user} setProfile={setProfile} />
+  return profile.displayName ? (
+    <>
+      {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+      <Header src="joker1">
+        <p>Hello</p>
+      </Header>
+    </>
+  ) : (
+    <SelectProfileContainer user={user} setProfile={setProfile} />
+  )
 }
 
 export default BrowseContainer

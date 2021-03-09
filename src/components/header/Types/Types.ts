@@ -1,5 +1,6 @@
 export type HeaderProps = {
-  bg: boolean
+  bg?: boolean
+  src?: string
 }
 
 export type HeaderLogoProps = {

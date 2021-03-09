@@ -15,7 +15,7 @@ type SelectProfileProps = {
 const SelectProfileContainer: React.FC<SelectProfileProps> = ({
   user,
   setProfile,
-}: any) => {
+}) => {
   return (
     <>
       <Header bg={false}>
