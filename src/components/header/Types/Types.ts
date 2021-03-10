@@ -1,6 +1,13 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export type HeaderProps = {
   bg?: boolean
   src?: string
+  dontShowOnSmallViewPort?: boolean
+}
+
+export type HeaderPictureProps = {
+  src: string
 }
 
 export type HeaderLogoProps = {
@@ -15,4 +22,19 @@ export type HeaderButtonProps = {
 
 export type HeaderBackgroundProps = {
   src?: string
+  dontShowOnSmallViewPort?: boolean
+}
+
+export type HeaderTextLinkProps = {
+  active?: string
+  onClick?: () => void
+}
+
+export type HeaderSearchProps = {
+  searchTerm: string
+  setSearchTerm: Dispatch<SetStateAction<string>>
+}
+
+export type HeaderSearchInputProps = {
+  active: boolean
 }
