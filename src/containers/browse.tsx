@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
+import Fuse from 'fuse.js'
 // Types
 import { BrowseContainerProps } from './Types'
 // Container
 import SelectProfileContainer from './profiles'
 // Context
 import { FirebaseContext } from '../context/firebase'
-import { Header, Loading } from '../components'
+import { Header, Loading, Player } from '../components'
 import * as ROUTES from '../constants/routes'
 import logo from '../logo.svg'
 import Card from '../components/card'
+import FooterContainer from './footer'
 
 const BrowseContainer: React.FC<BrowseContainerProps> = ({ slides }) => {
   const [category, setCategory] = useState<'series' | 'films'>('series')
@@ -18,7 +20,7 @@ const BrowseContainer: React.FC<BrowseContainerProps> = ({ slides }) => {
     photoURL: '',
   })
   const [loading, setLoading] = useState(true)
-  const [slideRows, setSlideRows] = useState()
+  const [slideRows, setSlideRows] = useState<any>()
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,6 +31,24 @@ const BrowseContainer: React.FC<BrowseContainerProps> = ({ slides }) => {
   useEffect(() => {
     setSlideRows(slides[category])
   }, [category, slides])
+
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ['data.description', 'data.title', 'data.genre'],
+    })
+
+    const results =
+      searchTerm && fuse.search(searchTerm).map(({ item }) => item)
+
+    if (slideRows) {
+      if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+        setSlideRows(results)
+      } else {
+        setSlideRows(slides[category])
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm])
 
   const { firebase } = useContext(FirebaseContext)
   const user = firebase.auth().currentUser || {}
@@ -106,15 +126,15 @@ const BrowseContainer: React.FC<BrowseContainerProps> = ({ slides }) => {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              <p>Hello</p>
-              {/*  <Player> */}
-              {/*    <Player.Button /> */}
-              {/*    <Player.Video src="/videos/bunny.mp4" /> */}
-              {/*  </Player> */}
+              <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player>
             </Card.Feature>
           </Card>
         ))}
       </Card.Group>
+      <FooterContainer />
     </>
   ) : (
     <SelectProfileContainer user={user} setProfile={setProfile} />
